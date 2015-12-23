@@ -1,0 +1,127 @@
+//
+//  conslib.cpp
+//  RedLibs Database Generator
+//
+//  Updated on 07/10/2015
+//
+//  This software is free software, licensed under the GNU GPL license v3.0.
+//  Copyright (c) ETH Zurich, D-BSSE, BPL, Daniel Gerngross 2015. All rights reserved.
+//  See http://www.bsse.ethz.ch/bpl/software/redlibs for updates, documentation, questions, and answers.
+//  Please cite M. Jeschek, D. Gerngross, S. Panke, [submission in progress]
+//
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <iomanip>
+#include <fstream>
+
+using namespace std;
+
+/////////////////////////////
+//	Function Declarations  //
+/////////////////////////////
+
+int multprod(long int n, int l);
+char convcons(long int n, int l, int j);
+
+
+
+////////////////////
+//	Main Program  //
+////////////////////
+
+int main (){
+    // Generate Files with size and sequence of all possible consensus combinations up to 8 bases
+    int buffer = 10000;
+    int mult[buffer];
+    char libfile[100];
+    char progress[100];
+    
+    
+	for (int l=1; l <= 8; l++) {
+        long int maxn = 15;
+        for (int i = 1; i < l; i++) maxn = maxn*15;
+        double count = 0;
+        
+        int k = 0;
+        char seq[l][buffer];
+        for (long int n = 0; n < maxn; n++){            
+            mult[k] = multprod(n, l);
+            for (int j = 0; j < l; j++){
+                seq[j][k] = convcons(n,l,j);
+            }
+            k++;
+            
+            if(k % buffer == 0 || n == maxn-1){
+                for (int h = 0; h < k; h++){
+                    sprintf(libfile, "conslib/conslib-%d-%d.txt", l, mult[h]);
+                    ofstream outputFile;
+                    outputFile.open(libfile, std::ios::app);
+                    outputFile << mult[h];
+                    outputFile << "\t";
+                    for (int j=0; j < l; j++){
+                        outputFile << seq[j][h];
+                        outputFile << "\t";
+                    }
+                    outputFile << "\n";
+                    outputFile.close();
+                    sprintf(progress, "conslib/_progress%d.txt", l);
+                    ofstream outputProgress(progress);
+                    outputProgress << n+1;
+                    outputProgress << " of ";
+                    outputProgress << maxn;
+                    outputProgress << " iterations done\n\n";
+                    double prog = count/(double)maxn;
+                    outputProgress << prog*100;
+                    outputProgress << " % done";
+                    outputProgress << endl;
+                    outputProgress.close();
+                }
+                k = 0;
+                char seq[l][buffer];
+                int mult[buffer];
+            }
+        count++;
+        }
+    }
+	return 0;
+}
+
+int multprod(long int n, int l) {
+	int radix = 15;
+	int digit[] = {1,1,1,1,2,2,2,2,2,2,3,3,3,3,4};
+	int rv[15];
+	long int t = n;
+	int r;
+	int prod = 1;
+	if(n == 0) return prod;
+	else {
+        for(int i = 0; i < l; i++){
+			r = t % radix;
+			rv[i] = digit[r];
+			t     = (t-r)/radix;
+			prod  = prod*rv[i];
+        }
+		return prod;
+	}     
+}
+
+
+char convcons(long int n, int l, int j) {
+	char rv[l];
+	if(n==0) {
+		for(int k=0;k<l;k++) rv[k]='A';
+		return rv[j];
+	} else {
+	char digit[] = {'A','C','G','T','Y','R','W','S','K','M','B','D','H','V','N'};
+	int radix = 15;
+	long int t = n;
+	int r;
+	for(int i = 0; i < l; i++){
+	r = t % radix;
+	rv[i] = digit[r];
+	t     = (t-r)/radix;
+	}
+	return rv[j];
+	}
+}
