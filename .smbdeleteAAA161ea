@@ -1,14 +1,14 @@
-#
-#  RedLibs_graphs.R
-#  RedLibsMPI
-#
-#  Updated on 25/07/2016
-#
-#  This software is free software, licensed under the GNU GPL license v3.0.
-#  Copyright (c) ETH Zurich, D-BSSE, BPL, Daniel Gerngross 2015. All rights reserved.
-#  See http://www.bsse.ethz.ch/bpl/software/redlibs for updates, documentation, questions, and answers.
-#  Please cite M. Jeschek, D. Gerngross, S. Panke, Nature Communications, 2016
-#
+##
+##  RedLibs_graphs.R
+##  RedLibsMPI
+##
+##  Updated on 15/02/2016
+##
+##  This software is free software, licensed under the GNU GPL license v3.0.
+##  Copyright (c) ETH Zurich, D-BSSE, BPL, Daniel Gerngross 2016. All rights reserved.
+##  See http://www.bsse.ethz.ch/bpl/software/redlibs for updates, documentation, questions, and answers.
+##  Please cite M. Jeschek, D. Gerngross, S. Panke, Nature Communications, 2016
+##
 
 
 #############
@@ -29,14 +29,11 @@ dis_max  <- TRUE            #Upper margin of target uniform distribution, TRUE i
 ## Ininitialization and Reading Data: ##
 ########################################
 library(xlsx)
-library(grImport2)
-library(grConvert)
 setwd("/Volumes/gerdanie$/RedLibs")
 ETH.col <- c( "#1f407a", "#3c5a0f", "#0069b4",    #ETH corporate design colors:
               "#72791c", "#91056a", "#6f6f6e",    #1:dark blue, 2:dark green, 3:light blue,
               "#a8322d", "#007a92", "#956013" )   #4:grass green, 5:violet, 6:grey,
                                                   #7:red, 8:turquoise, 9:khaki
-logo <- readPicture("Logo/RedLibs_version-pdf.svg")
 
 data <- read.table ( paste("Results/", name, "/", name, ".txt", collapse="", sep=""), header=FALSE)
 
@@ -219,7 +216,6 @@ for ( i in 1:10 ) {
   text ( 7, 10, "uniform", pos = 4 )
   text ( 7, 1, "rationally reduced library", pos = 4 )
   legend ( "topleft", text_result, box.col = "white", bg = rgb(1,1,1,0.5) )
-  grid.picture(logo, width=0.15, x=0.915, y=0.05, hjust="right", vjust="bottom")
   par ( family = "" )
   }
 }
