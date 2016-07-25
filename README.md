@@ -1,3 +1,4 @@
+<img src="https://www.bsse.ethz.ch/bpl/software/redlibs/_jcr_content/par/textimage/image.imageformat.lightbox.1971066330.png" alt="RedLibs logo" >
 # RedLibs
 RedLibs is an algorithm that allows for the rational design of smart combinatorial libraries for pathway optimization thereby minimizing the use of experimental resources.
 
