@@ -2,12 +2,12 @@
 //  main.cpp
 //  RedLibsMPI
 //
-//  Updated on 25/07/2016
+//  Updated on 02/03/2017
 //
 //  This software is free software, licensed under the GNU GPL license v3.0.
-//  Copyright (c) ETH Zurich, D-BSSE, BPL, Daniel Gerngross 2015. All rights reserved.
+//  Copyright (c) ETH Zurich, D-BSSE, BPL, Daniel Gerngross 2017. All rights reserved.
 //  See http://www.bsse.ethz.ch/bpl/software/redlibs for updates, documentation, questions, and answers.
-//  Please cite M. Jeschek, D. Gerngross, S. Panke, Nature Communications, 2016
+//  Please cite M. Jeschek, D. Gerngross, S. Panke, Nature Communications, 2016 (DOI:10.1038/ncomms11163)
 //
 
 #include <iostream>
@@ -16,7 +16,7 @@
 #include "rawdata.h"
 #include "logfile.h"
 #include "generate_list.h"
-#include <mpi.h>                                        //MPI needs to be available on the cluster
+#include "mpi.h"                                        //MPI needs to be available on the cluster
 
 using namespace std;
 
@@ -36,7 +36,7 @@ int main(int argc, char* argv[]){
     
     
     if ( mynode == 0 ) {
-        std::cout << " Calculations completed.\n\n";
+        std::cout << "Calculations completed.\n\n";
         writelog ( rawdat.output, " Calculations completed.\n" );
     }
     MPI_Finalize();
