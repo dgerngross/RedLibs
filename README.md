@@ -41,20 +41,20 @@ CGCTCA,2.9
 ### Options
 ```
 -o, --output		path for results
-default: [working directory]/[date]_[project name]
+                    default: [working directory]/[date]_[project name]
 -n, --projectName	name of project
-default: name of degenerate library file
+                    default: name of degenerate library file
 -d, --distribution	type of target distribution: 'uniform' or 'normal'
-default: uniform
+                    default: uniform
 -s, --startPosition	start position of degenerate sequence in raw data
-default value: 1
+                    default value: 1
 -e, --endPosition	end position of degenerate sequence in raw data has to be specified
 -g, --degeneracy	total degeneracy
-default value: 2
+                    default value: 2
 -l, --minLevel		minimal sequence data level
-default value: last value in input library file (sorted ascending)
+                    default value: last value in input library file (sorted ascending)
 -L, --maxLevel		maximal sequence data level
-default value: first value in input library file (sorted ascending)
+                    default value: first value in input library file (sorted ascending)
 -h, --help          show help
 ```
 
