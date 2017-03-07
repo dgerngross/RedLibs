@@ -59,4 +59,21 @@ CGCTCA,2.9
 ```
 
 ## Generating graphs and spreadsheets from the output:
-The file *RedLibs_graphs.R* provides a *R*-script to graphically evaluate the output of RedLibs for uniform target distributions. As output the user receives a pdf containing a graphical representation of the reduced libraries and a xlsx file containing the corresponding data. At the beginning of the file (lines 17-24) the user has to specify paths for the output, file containing the input degenerate library, and RedLibs output file. If the range of the target distribution is not between the maximum and minimum of the input degenerate library, this also has to be specified.
+The file *RedLibs_graphs.R* provides a *R*-script to graphically evaluate the output of RedLibs for uniform target distributions. As output the user receives a pdf containing a graphical representation of the reduced libraries and a xlsx file containing the corresponding data. At the beginning of the file (lines 17-24, see below) the user has to specify paths for the output, file containing the input degenerate library, and RedLibs output file. If the range of the target distribution is not between the maximum and minimum of the input degenerate library, this also has to be specified.
+### Example input:
+```
+#############
+## Inputs: ##
+#############
+#install.packages(xlsx) #Install the package 'xlsx' if not already done
+outputPath          <- "/Volumes/user/RedLibs/results/myProject"            #Path to output the graphs and spreadsheet
+dataPath            <- "/Volumes/user/RedLibs/results/myProject/data.csv"   #Path to degenerate input library file
+RedLibsOutputPath   <- "/Volumes/user/RedLibs/results/myProject/output.txt" #Path to degenerate input library file
+name                <- "gene"                           #Name of project
+level               <- "Translation Initiation Rate"    #Name data type assigned to sequences
+distributionMin     <- TRUE #Lower margin of target uniform distribution, TRUE if absolut minimum of input data
+distributionMax     <- TRUE #Upper margin of target uniform distribution, TRUE if absolut maximum of input data
+#############
+```
+### Example output:
+![RedLibs example output](http://www.bpl.ethz.ch/software/redlibs/RedLibs_output_example.png)
