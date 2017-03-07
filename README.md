@@ -19,7 +19,7 @@ The file *conslib_GLOS.cpp* in folder *conslib_GLOS* provides the code to genera
 The database is then generated in the working directory. The corresponding path, where the database is located, will be one of the necessary inputs for the RedLibs algorithm (see below).
 
 ## Running the main RedLibs algorithm:
-The source code provided here is written in *C++* using *Open MPI v1.4.5* for parallel computing. The files main.cpp, logfile.cpp, rawdata.cpp, and generate_list.cpp constitute together with their header files (.h) the program RedLibs. To generate a executable version, compile them together, e.g. `mpicxx -o ../RedLibsMPI.o -Wall main.cpp logfile.cpp rawdata.cpp generate_list.cpp -lstdc++`.
+The source code provided here is written in *C++* using *Open MPI v1.4.5* for parallel computing. The files main.cpp, logfile.cpp, rawdata.cpp, and generate_list.cpp constitute together with their header files (.h) the program RedLibs. To generate a executable version, compile them together, e.g. `mpic++ -o ../RedLibsMPI.o -std=c++11 generate_list.cpp logfile.cpp rawdata.cpp main.cpp`.
 
 The user needs to provide a degenerate input library file (csv format). This file contains all explicit sequences based on the degenerate sequence and a corresponding numerical value for each sequence sorted ascending in respect to these values, e.g.:
 

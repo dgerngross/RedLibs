@@ -13,6 +13,7 @@
 #include "logfile.h"
 #include <fstream>
 #include <time.h>
+#include <string>
 
 //function to create a log file
 void writelog ( std::string output, std::string message , int t ) {

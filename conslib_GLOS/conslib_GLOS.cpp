@@ -11,10 +11,12 @@
 //
 #include <iostream>
 #include <sstream>
-#include <string>
+#include <string.h>
 #include <cmath>
 #include <iomanip>
 #include <fstream>
+#include <cstdlib>
+#include <cstring>
 
 using namespace std;
 

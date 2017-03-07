@@ -72,8 +72,8 @@ RAWDAT::RAWDAT ( int* argc, char* argv[], int numnodes, int mynode ) {
                     struct stat sb;
                     if ( output.at(output.length()-1) != '/' ) output = output + "/";
                     if ( stat ( output.c_str(), &sb ) != 0 ) {
-                        system ( ("mkdir " + output).c_str() );
-                    }                                              //check whether output folder exists and create it if it does not exist
+                        if( mynode == 0 ) system ( ("mkdir " + output).c_str() ); //check whether output folder exists and create it if it does not exist
+                    }
                     check[1] = 1;
                     break;
                 case 'd':
@@ -95,26 +95,30 @@ RAWDAT::RAWDAT ( int* argc, char* argv[], int numnodes, int mynode ) {
                 case 's':
                     secondop = 0;
                     op >> startPosition;
-                    length = endPosition - startPosition + 1;
-                    if ( length <= 0 ) {
-                        err << "Error: End of degenerated sequence smaller than its start (" << endPosition << " < " << startPosition << ").\n\n";
-                        std::cout << err.str();
-                        if ( mynode == 0 ) writelog ( output, err.str() );
-                        err.str("");
-                        exit ( EXIT_FAILURE );
+                    if( check[4] == 1 ){
+                        length = endPosition - startPosition + 1;
+                        if ( length <= 0 ) {
+                            err << "Error: End of degenerated sequence smaller than its start (" << endPosition << " < " << startPosition << ").\n\n";
+                            std::cout << err.str();
+                            if ( mynode == 0 ) writelog ( output, err.str() );
+                            err.str("");
+                            exit ( EXIT_FAILURE );
+                        }
                     }
                     check[3] = 1;
                     break;
                 case 'e':
                     secondop = 0;
                     op >> endPosition;
-                    length = endPosition - startPosition + 1;
-                    if ( length <= 0 ) {
-                        err << "Error: End of degenerated sequence smaller than its start (" << endPosition << " < " << startPosition << ").\n\n";
-                        std::cout << err.str();
-                        if ( mynode == 0 ) writelog ( output, err.str() );
-                        err.str("");
-                        exit ( EXIT_FAILURE );
+                    if( check[3] == 1 ){
+                        length = endPosition - startPosition + 1;
+                        if ( length <= 0 ) {
+                            err << "Error: End of degenerated sequence smaller than its start (" << endPosition << " < " << startPosition << ").\n\n";
+                            std::cout << err.str();
+                            if ( mynode == 0 ) writelog ( output, err.str() );
+                            err.str("");
+                            exit ( EXIT_FAILURE );
+                        }
                     }
                     check[4] = 1;
                     break;
@@ -250,8 +254,8 @@ RAWDAT::RAWDAT ( int* argc, char* argv[], int numnodes, int mynode ) {
             ++foldersuffix;
             append.str("");
         }
-        if ( output.at(output.length()-1) != '/' ) output = output + "/";
-        system ( ("mkdir " + output).c_str() );
+        if( output.at(output.length()-1) != '/' ) output = output + "/";
+        if( mynode == 0 ) system ( ("mkdir " + output).c_str() );
     }
     if ( check[2] == 0 ) {
         distribution = "uniform";
