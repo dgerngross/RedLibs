@@ -17,7 +17,7 @@
 #install.packages(xlsx) #Install the package 'xlsx' if not already done
 outputPath          <- "/Volumes/user/RedLibs/results/myProject"            #Path to output the graphs and spreadsheet
 dataPath            <- "/Volumes/user/RedLibs/results/myProject/data.csv"   #Path to degenerate input library file
-RedLibsOutputPath   <- "/Volumes/user/RedLibs/results/myProject/output.txt" #Path to degenerate input library file
+RedLibsOutputPath   <- "/Volumes/user/RedLibs/results/myProject/output.txt" #Path to RedLibs output file
 name                <- "gene"                           #Name of project
 level               <- "Translation Initiation Rate"    #Name data type assigned to sequences
 distributionMin     <- TRUE #Lower margin of target uniform distribution, TRUE if absolut minimum of input data
