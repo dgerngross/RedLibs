@@ -22,8 +22,8 @@
 #include <time.h>
 #include "mpi.h"
 
-void generate_list ( RAWDAT rawdat, int numnodes, int mynode, MPI_Status Stat ){
-    
+void generate_list ( RAWDAT rawdat, int numnodes, int mynode ){
+	MPI_Status Stat;
     if ( mynode == 0 ) writelog ( rawdat.output, " Starting calculations.\n" );
     
     int rc;                                         //MPI communication
@@ -354,7 +354,7 @@ void getDSequenceProperties ( dSequenceProperties * tempDSequence, RAWDAT rawdat
             for ( int m = tempDSequence->degeneracy - 1; m >= 0; --m ) {
                 F = F + step;
                 skip = 1.0;
-                while ( distributionValues[m] == distributionValues[m - 1] && m > 0 ) {
+                while ( m > 0 && distributionValues[m] == distributionValues[m - 1] ) {
                     F = F + step;
                     --m;
                     skip = skip + 1.0;

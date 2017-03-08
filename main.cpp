@@ -22,8 +22,6 @@ using namespace std;
 
 int main(int argc, char* argv[]){
     
-    MPI_Status Stat;
-    
     MPI_Init( &argc, &argv);
     int numnodes;                                       //number of nodes on the cluster
     int mynode;                                         //current node
@@ -32,7 +30,7 @@ int main(int argc, char* argv[]){
     
     RAWDAT rawdat ( &argc, argv, numnodes, mynode );    //load and prepare raw data
     
-    generate_list ( rawdat, numnodes, mynode, Stat );   //generate reduced libraries
+    generate_list ( rawdat, numnodes, mynode );   //generate reduced libraries
     
     
     if ( mynode == 0 ) {

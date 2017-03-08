@@ -30,7 +30,7 @@ struct dSequenceProperties {
     void set ( const dSequenceProperties& c );
 };
 
-void generate_list ( RAWDAT rawdat, int numnodes, int mynode, MPI_Status Stat );
+void generate_list ( RAWDAT rawdat, int numnodes, int mynode );
 long int combrange ( int mynode, int numnodes, long int combs );
 void getDSequenceProperties ( dSequenceProperties * tempDSequence, RAWDAT rawdat );
 void sortBest ( std::vector<dSequenceProperties> * bestDSequence, dSequenceProperties * tempDSequence );

@@ -71,8 +71,17 @@ RAWDAT::RAWDAT ( int* argc, char* argv[], int numnodes, int mynode ) {
                     op >> output;
                     struct stat sb;
                     if ( output.at(output.length()-1) != '/' ) output = output + "/";
-                    if ( stat ( output.c_str(), &sb ) != 0 ) {
-                        if( mynode == 0 ) system ( ("mkdir " + output).c_str() ); //check whether output folder exists and create it if it does not exist
+                    if ( stat ( output.c_str(), &sb ) != 0 ) 
+					{
+						if (mynode == 0)
+						{
+							//check whether output folder exists and create it if it does not exist
+#ifdef WIN32
+							system(("mkdir " + output.substr(0, output.length() - 1)).c_str());
+#else
+							system(("mkdir " + output).c_str());
+#endif
+						}
                     }
                     check[1] = 1;
                     break;
@@ -255,7 +264,14 @@ RAWDAT::RAWDAT ( int* argc, char* argv[], int numnodes, int mynode ) {
             append.str("");
         }
         if( output.at(output.length()-1) != '/' ) output = output + "/";
-        if( mynode == 0 ) system ( ("mkdir " + output).c_str() );
+		if (mynode == 0)
+		{
+#ifdef WIN32
+			system(("mkdir " + output.substr(0, output.length() - 1)).c_str());
+#else
+			system(("mkdir " + output).c_str());
+#endif
+		}
     }
     if ( check[2] == 0 ) {
         distribution = "uniform";
