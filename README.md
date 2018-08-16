@@ -14,7 +14,7 @@ The file *conslib.cpp8 in folder *conslib* provides the code to generate the seq
 
 The file *conslib_GLOS.cpp* in folder *conslib_GLOS* provides the code to generate the sequence database needed to run RedLibs based on genome library optimized sequences (GLOS) libraries, i.e. a six bases long triple degenerate sequence (e.g. BDHVBD). Example usage: `conslib_GLOS.o BDHVBD`
 
-(*Please cite Sabine Oesterle, Daniel Gerngross, Steven Schmitt, Tania Michelle Roberts, and Sven Panke, [submission in progress], 2017*)
+(*Please cite Sabine Oesterle, Daniel Gerngross, Steven Schmitt, Tania Michelle Roberts, and Sven Panke, Scientific Reports, 2017 https://doi.org/10.1038/s41598-017-12395-3*)
 
 The database is then generated in the working directory. The corresponding path, where the database is located, will be one of the necessary inputs for the RedLibs algorithm (see below).
 
